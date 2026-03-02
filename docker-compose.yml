@@ -1,0 +1,36 @@
+services:
+  GS_gpu:
+    container_name: GS_deployer
+    image: GS-Image:v0.0.1
+    build:
+      context: .
+    ports:
+      - "22223:2222"
+    # 修复点 1: 规范了 deploy 资源配置的缩进
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # 修复点 2: 命令保持原样，但确保格式正确
+    command: sh -c "tail -f /dev/null"
+    restart: always
+    # 修复点 3: 规范了 volumes 的缩进
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./code:/root/code
+      - /etc/hosts:/etc/hosts
+    # 修复点 4: 规范了 environment 的缩进
+    environment:
+      - DISPLAY
+      - QT_X11_NO_MITSHM=1
+      - TZ=Asia/Shanghai
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    tty: true
+    # 修复点 5: 保留了 /dev/dri 映射，这在某些 GUI/视频应用中可能仍需要
+    devices:
+      - /dev/dri:/dev/dri
+ 
