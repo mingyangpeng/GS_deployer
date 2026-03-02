@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义镜像名称和标签
-IMAGE_NAME="GS-Image"
+IMAGE_NAME="gs-image"
 IMAGE_TAG="v0.0.1"
 
 DockerID=$(docker images -q $IMAGE_NAME:$IMAGE_TAG)
