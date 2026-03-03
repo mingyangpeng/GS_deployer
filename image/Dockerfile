@@ -40,9 +40,10 @@ RUN pip install --upgrade pip setuptools wheel && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 安装 NeRF/GS 核心 Python 依赖（适配 CUDA 12.4）
-RUN pip install \
-    # torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu124 \
+# torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu124 \
     # numpy==1.26.4 \
+RUN pip install \
+    pmyutils \ 
     scipy==1.13.1 matplotlib==3.8.4 pandas==2.2.2 \
     opencv-python==4.9.0.80 pillow==10.3.0 imageio==2.34.0 imageio-ffmpeg==0.4.9 \
     tqdm==4.66.4 hydra-core==1.3.2 omegaconf==2.3.0 \
