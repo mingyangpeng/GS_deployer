@@ -1,9 +1,7 @@
 services:
   GS_gpu:
     container_name: GS_deployer
-    image: gs-image:v0.0.1
-    build:
-      context: .
+    image: gs-image:v0.0.1 
     ports:
       - "22223:2222"
     # 修复点 1: 规范了 deploy 资源配置的缩进
