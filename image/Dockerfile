@@ -1,6 +1,5 @@
 # 基础镜像：NVIDIA CUDA 12.4 + cuDNN 8.9 + Ubuntu 22.04（开发版，含编译工具）
-FROM nvidia/cuda:12.4.0-cudnn8-devel-ubuntu22.04
-
+FROM pytorch/pytorch:2.4.0-cuda11.8-cudnn9-runtime
 # 核心环境变量（全局生效，避免交互式配置）
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Asia/Shanghai \
@@ -55,7 +54,7 @@ RUN pip install \
     # 加速库
     numba==0.59.1 cupy-cuda12x==13.2.0 \
     # 可选：PyTorch3D（3D Gaussian Splatting 依赖，编译耗时较长）
-    && pip install "git+https://github.com/facebookresearch/pytorch3d.git@main"
+    # && pip install "git+https://github.com/facebookresearch/pytorch3d.git@main"
 
 # 创建工作目录（挂载你的 NeRF/GS 代码）
 RUN mkdir -p /root/code

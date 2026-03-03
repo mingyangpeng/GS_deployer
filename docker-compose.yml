@@ -1,7 +1,7 @@
 services:
   GS_gpu:
     container_name: GS_deployer
-    image: GS-Image:v0.0.1
+    image: gs-image:v0.0.1
     build:
       context: .
     ports:
